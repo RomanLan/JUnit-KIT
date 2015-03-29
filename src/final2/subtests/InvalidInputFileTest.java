@@ -65,6 +65,9 @@ public class InvalidInputFileTest extends LangtonSubtest {
 
 	/**
 	 * Asserts that the tested class detects input files with empty lines.
+	 * <p>
+	 * If these tests fail for you and you're using the <code>FileInputHelper</code>, please see this post on ILIAS:
+	 * http://goo.gl/MXXkpP
 	 */
 	@Test
 	public void emptyLinesTest() {
@@ -99,6 +102,10 @@ public class InvalidInputFileTest extends LangtonSubtest {
 				"0000",
 				"",
 		};
+		/*
+		 * If these tests fail for you and you're using the FileInputHelper, please see this post on ILIAS:
+		 * http://goo.gl/MXXkpP
+		 */
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 
 		inputFile = new String[] {
@@ -108,6 +115,10 @@ public class InvalidInputFileTest extends LangtonSubtest {
 				"",
 				"",
 		};
+		/*
+		 * If these tests fail for you and you're using the FileInputHelper, please see this post on ILIAS:
+		 * http://goo.gl/MXXkpP
+		 */
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 
 		inputFile = new String[] {
@@ -115,11 +126,19 @@ public class InvalidInputFileTest extends LangtonSubtest {
 				"",
 				"",
 		};
+		/*
+		 * If these tests fail for you and you're using the FileInputHelper, please see this post on ILIAS:
+		 * http://goo.gl/MXXkpP
+		 */
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 
 		inputFile = new String[] {
 			"",
 		};
+		/*
+		 * If these tests fail for you and you're using the FileInputHelper, please see this post on ILIAS:
+		 * http://goo.gl/MXXkpP
+		 */
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 
 		inputFile = new String[] {};
@@ -198,32 +217,32 @@ public class InvalidInputFileTest extends LangtonSubtest {
 	@Test
 	public void invalidCharactersTest() {
 		inputFile = new String[] {
-				"0-0",
+				"a-0",
 				"000",
 				"000"
 		};
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 
 		inputFile = new String[] {
-				"000",
+				"a00",
 				"500",
 				"000"
 		};
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 		inputFile = new String[] {
-				"000",
+				"a00",
 				"00+",
 				"000"
 		};
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 		inputFile = new String[] {
-				"000",
+				"a00",
 				"&00",
 				"000"
 		};
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 		inputFile = new String[] {
-				"000",
+				"a00",
 				"000",
 				">00"
 		};
@@ -240,6 +259,13 @@ public class InvalidInputFileTest extends LangtonSubtest {
 				"000",
 				"0+10",
 				"a00"
+		};
+		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
+
+		inputFile = new String[] {
+				"000",
+				"\u00e400", // \u00e4 = ae
+				"b00"
 		};
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 	}
@@ -270,27 +296,26 @@ public class InvalidInputFileTest extends LangtonSubtest {
 		};
 		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 
-        inputFile = new String[] {
-                " 000",
-                "00a",
-                "000"
-        };
-        sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
-        
+		inputFile = new String[] {
+				" 000",
+				"00a",
+				"000"
+		};
+		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 
-        inputFile = new String[] {
-                "000",
-                "00a",
-                "000 "
-        };
-        sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
-        inputFile = new String[] {
-                "000",
-                "00a",
-                "000 ",
-                "000"
-        };
-        sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
+		inputFile = new String[] {
+				"000",
+				"00a",
+				"000 "
+		};
+		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
+		inputFile = new String[] {
+				"000",
+				"00a",
+				"000 ",
+				"000"
+		};
+		sessionTest(new ErrorRun(), onlyQuit(), Input.getFile(inputFile));
 		inputFile = new String[] {
 				"00 ",
 				"00a",
